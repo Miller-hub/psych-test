@@ -2,30 +2,64 @@
 <html lang="zh-Hant">
 <head>
   <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+
   <title>你的測驗結果</title>
   <style>
+    html {
+      font-size: 16px;
+    }
+  
     body {
-      font-family: Arial;
-      padding: 30px;
+      font-family: Arial, sans-serif;
+      padding: 2rem;
       max-width: 600px;
       margin: auto;
-    }
-    h2 {
-      color: #2c3e50;
-    }
-    #output {
-      white-space: pre-line;
-      margin-top: 20px;
-      font-size: 18px;
       line-height: 1.6;
     }
+  
+    h2 {
+      color: #2c3e50;
+      font-size: 1.8rem;
+    }
+  
+    .question {
+      margin-bottom: 1.5rem;
+    }
+  
+    button {
+      background-color: #3498db;
+      color: white;
+      border: none;
+      padding: 0.6rem 1.2rem;
+      border-radius: 6px;
+      font-size: 1rem;
+      cursor: pointer;
+      margin-top: 1rem;
+    }
+  
+    button:hover {
+      background-color: #2980b9;
+    }
+  
+    label {
+      font-size: 1rem;
+    }
+  
+    #output {
+      font-size: 1rem;
+      margin-top: 1.2rem;
+    }
+  
     a {
       display: inline-block;
-      margin-top: 30px;
+      margin-top: 2rem;
       text-decoration: none;
       color: #3498db;
+      font-size: 1rem;
     }
   </style>
+  
 </head>
 <body>
   <h2>🎉 你的學習風格結果如下：</h2>
