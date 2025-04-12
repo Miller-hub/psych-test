@@ -8,6 +8,19 @@
     h2 { color: #2c3e50; }
     .question { margin-bottom: 20px; }
     button { padding: 10px 20px; font-size: 16px; margin-top: 20px; }
+    button {
+  background-color: #3498db;
+  color: white;
+  border: none;
+  padding: 10px 20px;
+  border-radius: 6px;
+  font-size: 16px;
+  cursor: pointer;
+}
+button:hover {
+  background-color: #2980b9;
+}
+
   </style>
 </head>
 <body>
@@ -54,7 +67,10 @@
   </form>
 
   <div id="result" style="margin-top: 30px; font-weight: bold;"></div>
-
+  <div style="margin-top: 20px;">
+    <button onclick="restartQuiz()">🔄 重新測驗</button>
+  </div>
+  
   <script>
     function calculateResult() {
       const form = document.getElementById("quizForm");
@@ -109,6 +125,19 @@
 
       document.getElementById("result").textContent = resultText;
     }
+
+    function restartQuiz() {
+  // 清空所有選項
+  const form = document.getElementById("quizForm");
+  form.reset();
+
+  // 清空結果顯示
+  document.getElementById("result").textContent = "";
+
+  // 捲動到最上面
+  window.scrollTo({ top: 0, behavior: 'smooth' });
+}
+ 
   </script>
 </body>
 </html>
