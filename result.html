@@ -1,0 +1,47 @@
+<!DOCTYPE html>
+<html lang="zh-Hant">
+<head>
+  <meta charset="UTF-8" />
+  <title>你的測驗結果</title>
+  <style>
+    body {
+      font-family: Arial;
+      padding: 30px;
+      max-width: 600px;
+      margin: auto;
+    }
+    h2 {
+      color: #2c3e50;
+    }
+    #output {
+      white-space: pre-line;
+      margin-top: 20px;
+      font-size: 18px;
+      line-height: 1.6;
+    }
+    a {
+      display: inline-block;
+      margin-top: 30px;
+      text-decoration: none;
+      color: #3498db;
+    }
+  </style>
+</head>
+<body>
+  <h2>🎉 你的學習風格結果如下：</h2>
+  <div id="output">載入中...</div>
+
+  <a href="index.html">🔁 回到測驗首頁</a>
+
+  <script>
+    const result = localStorage.getItem("learningStyleResult");
+    const output = document.getElementById("output");
+
+    if (result) {
+      output.textContent = result;
+    } else {
+      output.textContent = "找不到結果，請先完成測驗。";
+    }
+  </script>
+</body>
+</html>

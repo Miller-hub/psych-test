@@ -4,23 +4,31 @@
   <meta charset="UTF-8">
   <title>心理測驗：學習風格</title>
   <style>
-    body { font-family: Arial; padding: 30px; max-width: 600px; margin: auto; }
-    h2 { color: #2c3e50; }
-    .question { margin-bottom: 20px; }
-    button { padding: 10px 20px; font-size: 16px; margin-top: 20px; }
+    body {
+      font-family: Arial;
+      padding: 30px;
+      max-width: 600px;
+      margin: auto;
+    }
+    h2 {
+      color: #2c3e50;
+    }
+    .question {
+      margin-bottom: 20px;
+    }
     button {
-  background-color: #3498db;
-  color: white;
-  border: none;
-  padding: 10px 20px;
-  border-radius: 6px;
-  font-size: 16px;
-  cursor: pointer;
-}
-button:hover {
-  background-color: #2980b9;
-}
-
+      background-color: #3498db;
+      color: white;
+      border: none;
+      padding: 10px 20px;
+      border-radius: 6px;
+      font-size: 16px;
+      margin-top: 20px;
+      cursor: pointer;
+    }
+    button:hover {
+      background-color: #2980b9;
+    }
   </style>
 </head>
 <body>
@@ -54,28 +62,27 @@ button:hover {
       <label><input type="radio" name="q4" value="auditory"> 一邊唸一邊記</label><br>
       <label><input type="radio" name="q4" value="kinesthetic"> 寫下來或做動作</label>
     </div>
-    
+
     <div class="question">
       <p>5. 你覺得自己學東西最快的方法是：</p>
       <label><input type="radio" name="q5" value="visual"> 看影片或圖文解說</label><br>
       <label><input type="radio" name="q5" value="auditory"> 聽人說給我聽</label><br>
       <label><input type="radio" name="q5" value="kinesthetic"> 自己動手做一遍</label>
     </div>
-    
 
     <button type="button" onclick="calculateResult()">看結果</button>
   </form>
 
   <div id="result" style="margin-top: 30px; font-weight: bold;"></div>
+
   <div style="margin-top: 20px;">
     <button onclick="restartQuiz()">🔄 重新測驗</button>
   </div>
-  
+
   <script>
     function calculateResult() {
       const form = document.getElementById("quizForm");
       const answers = ["q1", "q2", "q3", "q4", "q5"];
-
       const scores = { visual: 0, auditory: 0, kinesthetic: 0 };
 
       for (let q of answers) {
@@ -87,58 +94,27 @@ button:hover {
         }
       }
 
-      let resultText = "";
       const maxType = Object.entries(scores).sort((a, b) => b[1] - a[1])[0][0];
+      let resultText = "";
 
       if (maxType === "visual") {
-  resultText = `🎨 你是「視覺型學習者」！
+        resultText = `🎨 你是「視覺型學習者」！\n\n你偏好透過圖片、圖表、影片、重點筆記來學習。\n適合你的學習方法包括：\n- 製作思維導圖或重點整理\n- 使用顏色分類資訊\n- 看影片搭配字幕輔助理解\n\n下次讀書時，不妨試試畫圖表代替死背！`;
+      } else if (maxType === "auditory") {
+        resultText = `🎧 你是「聽覺型學習者」！\n\n你透過聽覺輸入記憶最有效，例如聽講、背誦或錄音。\n適合你的學習方法包括：\n- 一邊唸一邊記\n- 用自己的話講給別人聽\n- 聽課或聽 Podcast 再整理重點\n\n試著用「說出來」取代一直寫，可能會更有感覺喔！`;
+      } else {
+        resultText = `🎮 你是「動覺型學習者」！\n\n你習慣透過動手做、實際操作或模擬來學習。\n適合你的學習方法包括：\n- 親自動手寫、畫、操作\n- 做實驗或演練練習題\n- 利用學習工具（卡片、遊戲化）\n\n只看書容易分心？那就讓手動起來學更有效！`;
+      }
 
-你偏好透過圖片、圖表、影片、重點筆記來學習。
-適合你的學習方法包括：
-- 製作思維導圖或重點整理
-- 使用顏色分類資訊
-- 看影片搭配字幕輔助理解
-
-下次讀書時，不妨試試畫圖表代替死背！`;
-} else if (maxType === "auditory") {
-  resultText = `🎧 你是「聽覺型學習者」！
-
-你透過聽覺輸入記憶最有效，例如聽講、背誦或錄音。
-適合你的學習方法包括：
-- 一邊唸一邊記
-- 用自己的話講給別人聽
-- 聽課或聽 Podcast 再整理重點
-
-試著用「說出來」取代一直寫，可能會更有感覺喔！`;
-} else {
-  resultText = `🎮 你是「動覺型學習者」！
-
-你習慣透過動手做、實際操作或模擬來學習。
-適合你的學習方法包括：
-- 親自動手寫、畫、操作
-- 做實驗或演練練習題
-- 利用學習工具（卡片、遊戲化）
-
-只看書容易分心？那就讓手動起來學更有效！`;
-}
-  
-
-      document.getElementById("result").textContent = resultText;
+      localStorage.setItem("learningStyleResult", resultText);
+      window.location.href = "result.html";
     }
 
     function restartQuiz() {
-  // 清空所有選項
-  const form = document.getElementById("quizForm");
-  form.reset();
-
-  // 清空結果顯示
-  document.getElementById("result").textContent = "";
-
-  // 捲動到最上面
-  window.scrollTo({ top: 0, behavior: 'smooth' });
-}
- 
+      const form = document.getElementById("quizForm");
+      form.reset();
+      document.getElementById("result").innerHTML = "";
+      window.scrollTo({ top: 0, behavior: 'smooth' });
+    }
   </script>
 </body>
 </html>
-
