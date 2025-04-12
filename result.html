@@ -8,14 +8,23 @@
 </head>
 <body>
   <h2>你的測驗結果是：</h2>
-  <div id="output">載入中...</div>
+  <div id="result-container">
+    <img id="result-img" src="" alt="結果圖片" style="max-width: 100%; height: auto; display: none;">
+    <p id="result-text" style="margin-top: 1rem;"></p>
+  </div>
   <a href="index.html">🔁 回到首頁</a>
   <script>
     fetch("results.json")
       .then(res => res.json())
       .then(results => {
         const type = localStorage.getItem("quizResult");
-        document.getElementById("output").textContent = results[type] || "找不到結果";
+        if (type && results[type]) {
+          document.getElementById("result-img").src = results[type].img;
+          document.getElementById("result-img").style.display = "block";
+          document.getElementById("result-text").textContent = results[type].text;
+        } else {
+          document.getElementById("result-text").textContent = "找不到結果，請先完成測驗。";
+        }
       });
   </script>
 </body>
