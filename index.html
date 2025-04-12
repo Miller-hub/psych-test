@@ -35,6 +35,21 @@
       <label><input type="radio" name="q3" value="kinesthetic"> 喜歡操作或動來動去</label>
     </div>
 
+    <div class="question">
+      <p>4. 當你在背誦內容時，你會：</p>
+      <label><input type="radio" name="q4" value="visual"> 用圖像或畫記憶圖</label><br>
+      <label><input type="radio" name="q4" value="auditory"> 一邊唸一邊記</label><br>
+      <label><input type="radio" name="q4" value="kinesthetic"> 寫下來或做動作</label>
+    </div>
+    
+    <div class="question">
+      <p>5. 你覺得自己學東西最快的方法是：</p>
+      <label><input type="radio" name="q5" value="visual"> 看影片或圖文解說</label><br>
+      <label><input type="radio" name="q5" value="auditory"> 聽人說給我聽</label><br>
+      <label><input type="radio" name="q5" value="kinesthetic"> 自己動手做一遍</label>
+    </div>
+    
+
     <button type="button" onclick="calculateResult()">看結果</button>
   </form>
 
@@ -43,7 +58,8 @@
   <script>
     function calculateResult() {
       const form = document.getElementById("quizForm");
-      const answers = ["q1", "q2", "q3"];
+      const answers = ["q1", "q2", "q3", "q4", "q5"];
+
       const scores = { visual: 0, auditory: 0, kinesthetic: 0 };
 
       for (let q of answers) {
