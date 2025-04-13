@@ -1,0 +1,124 @@
+<!DOCTYPE html>
+<html lang="zh-Hant">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>測驗結果</title>
+  <script src="https://cdn.jsdelivr.net/npm/html2canvas@1.4.1/dist/html2canvas.min.js"></script>
+  <style>
+    body {
+      font-family: 'Helvetica Neue', Arial, sans-serif;
+      padding: 2rem;
+      max-width: 600px;
+      margin: auto;
+      text-align: center;
+      background-color: #f9f9f9;
+      color: #2c3e50;
+    }
+    h2 {
+      font-size: 1.8rem;
+      margin-bottom: 1rem;
+    }
+    #output {
+      background-color: #ffffff;
+      padding: 1.5rem;
+      border-radius: 10px;
+      box-shadow: 0 2px 10px rgba(0, 0, 0, 0.1);
+    }
+    #output p {
+      margin: 1rem 0;
+      font-size: 1.1rem;
+    }
+    img {
+      margin-top: 1rem;
+      max-width: 80%;
+      height: auto;
+      border-radius: 10px;
+    }
+    .buttons {
+      margin-top: 2rem;
+    }
+    .buttons a, .buttons button {
+      display: inline-block;
+      margin: 0.5rem;
+      padding: 10px 20px;
+      background-color: #3498db;
+      color: white;
+      text-decoration: none;
+      border-radius: 6px;
+      font-size: 1rem;
+      border: none;
+      cursor: pointer;
+    }
+    .buttons a:hover, .buttons button:hover {
+      background-color: #2980b9;
+    }
+    .share-btn {
+      background-color: #00c300;
+    }
+    .share-btn.fb {
+      background-color: #4267B2;
+    }
+    .share-btn:hover {
+      opacity: 0.9;
+    }
+  </style>
+</head>
+<body>
+  <h2>你的測驗結果是：</h2>
+  <div id="output">載入中...</div>
+
+  <div class="buttons">
+    <a href="index.html">🔁 回到首頁</a>
+    <a id="lineShare" class="share-btn" href="#" target="_blank">📲 分享到 LINE</a>
+    <a id="fbShare" class="share-btn fb" href="#" target="_blank">📘 分享到 Facebook</a>
+    <button id="downloadImageBtn">⬇️ 下載整個畫面</button>
+  </div>
+
+  <script>
+    const results = {
+      "獅子": {
+        text: "你像一隻果斷的獅子，擅長領導他人、直接處理問題。",
+        img: "images/lion.png"
+      },
+      "海豚": {
+        text: "你像一隻快樂的海豚，富有同理心，適合團體合作與情感連結。",
+        img: "images/dolphin.png"
+      },
+      "貓頭鷹": {
+        text: "你像一隻冷靜的貓頭鷹，重視思考與分析，是規劃高手。",
+        img: "images/owl.png"
+      }
+    };
+
+    const result = localStorage.getItem("quizResult");
+    const output = document.getElementById("output");
+
+    if (results[result]) {
+      output.innerHTML = `
+        <p><strong>${result}</strong></p>
+        <p>${results[result].text}</p>
+        <img id="resultImg" src="${results[result].img}" alt="${result}" />
+      `;
+
+      const currentUrl = encodeURIComponent(window.location.href);
+      const shareText = encodeURIComponent(`我剛做了動物性格測驗，我是「${result}」！`);
+
+      document.getElementById("lineShare").href = `https://social-plugins.line.me/lineit/share?url=${currentUrl}&text=${shareText}`;
+      document.getElementById("fbShare").href = `https://www.facebook.com/sharer/sharer.php?u=${currentUrl}`;
+    } else {
+      output.textContent = "找不到結果，請先完成測驗。";
+    }
+
+    // 整個畫面轉成圖片下載
+    document.getElementById("downloadImageBtn").addEventListener("click", () => {
+      html2canvas(document.querySelector("#output")).then(canvas => {
+        const link = document.createElement("a");
+        link.href = canvas.toDataURL("image/png");
+        link.download = "測驗結果.png";
+        link.click();
+      });
+    });
+  </script>
+</body>
+</html>

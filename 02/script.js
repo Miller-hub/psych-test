@@ -20,12 +20,15 @@ function renderQuestion() {
     </div>
   `;
 
+  // 更新進度條
   progressText.textContent = `第 ${currentQuestion + 1} 題 / 共 ${questions.length} 題`;
   const percent = ((currentQuestion + 1) / questions.length) * 100;
   progressFill.style.width = percent + "%";
 
+  // 控制上一題按鈕狀態
   backBtn.disabled = currentQuestion === 0;
 
+  // 綁定選項點選事件
   const allOptions = document.querySelectorAll("input[name='option']");
   allOptions.forEach(opt => {
     opt.addEventListener("change", (e) => {
@@ -56,7 +59,6 @@ function calculateResult() {
   });
   const result = Object.entries(score).sort((a, b) => b[1] - a[1])[0][0];
   localStorage.setItem("quizResult", result);
-  localStorage.setItem("quizAnswers", JSON.stringify(answers));
   window.location.href = "result.html";
 }
 
