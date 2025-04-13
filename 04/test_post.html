@@ -1,0 +1,46 @@
+<!DOCTYPE html>
+<html lang="zh-Hant">
+<head>
+  <meta charset="UTF-8">
+  <title>心理測驗結果送出測試</title>
+  <style>
+    body { font-family: Arial; padding: 2rem; text-align: center; }
+    button {
+      padding: 1rem 2rem;
+      background-color: #2c3e50;
+      color: white;
+      font-size: 1.2rem;
+      border: none;
+      border-radius: 6px;
+      cursor: pointer;
+    }
+    #msg { margin-top: 2rem; font-size: 1rem; color: #555; }
+  </style>
+</head>
+<body>
+  <h2>📤 心理測驗資料送出測試</h2>
+  <button onclick="send()">送出測試資料</button>
+  <div id="msg">尚未送出</div>
+
+  <script>
+    function send() {
+      document.getElementById("msg").innerText = "🚀 傳送中...";
+      fetch("https://script.google.com/macros/s/AKfycbwNk1CtzRJec8JcxDXAhLMp158rAQmFD_8-HNoYTGTTP4W7BzgiU6Jbzj8v5s21v3zw/exec", {
+        method: "POST",
+        headers: { "Content-Type": "application/json" },
+        body: JSON.stringify({
+          result: "🦁 測試結果：獅子",
+          answers: ["A：看圖記憶", "B：邊走邊唸", "C：做中學"]
+        })
+      })
+      .then(res => res.text())
+      .then(text => {
+        document.getElementById("msg").innerText = "✅ 成功送出：" + text;
+      })
+      .catch(err => {
+        document.getElementById("msg").innerText = "❌ 傳送錯誤：" + err.message;
+      });
+    }
+  </script>
+</body>
+</html>
