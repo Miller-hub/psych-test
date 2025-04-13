@@ -1,91 +1,80 @@
 
 body {
   font-family: 'Segoe UI', sans-serif;
-  background: #f3f7fb;
+  background: #f2f4f8;
   margin: 0;
   padding: 1rem;
-  font-size: 1rem;
 }
 .container {
-  max-width: 700px;
+  max-width: 600px;
   margin: auto;
-  background: #fff;
+  background: #ffffff;
   padding: 2rem;
   border-radius: 12px;
-  box-shadow: 0 4px 12px rgba(0,0,0,0.08);
+  box-shadow: 0 4px 12px rgba(0, 0, 0, 0.08);
 }
 h1 {
   text-align: center;
   color: #2c3e50;
   font-size: 1.8rem;
-  margin-bottom: 1rem;
 }
-.intro {
+#progress-text {
+  margin: 1rem 0 0.5rem;
+  font-size: 1rem;
   text-align: center;
-  margin-bottom: 2rem;
-  color: #666;
+}
+.progress-bar {
+  width: 100%;
+  height: 10px;
+  background-color: #eee;
+  border-radius: 5px;
+  overflow: hidden;
+}
+.progress-fill {
+  height: 100%;
+  width: 0%;
+  background-color: #3498db;
+  transition: width 0.3s;
 }
 .question {
-  background: #f9f9f9;
-  border-radius: 8px;
-  padding: 1.2rem;
-  margin-bottom: 1.5rem;
-  box-shadow: 0 1px 4px rgba(0,0,0,0.05);
+  margin-top: 2rem;
 }
 .question p {
   font-weight: bold;
-  margin-bottom: 1rem;
-  font-size: 1.1rem;
+  font-size: 1.2rem;
+  margin-bottom: 1.2rem;
 }
 label {
   display: block;
-  margin: 0.6rem 0;
-  padding: 0.6rem 1rem;
-  border-radius: 8px;
+  margin: 0.8rem 0;
+  padding: 0.8rem 1rem;
   background: #ecf0f1;
+  border-radius: 10px;
   cursor: pointer;
-  transition: background 0.2s, transform 0.2s;
-  font-size: 1rem;
+  font-size: 1.05rem;
+  transition: 0.2s;
 }
 label:hover {
-  background: #d0e6f7;
-  transform: scale(1.02);
+  background-color: #d0e6f7;
 }
 input[type="radio"] {
-  margin-right: 0.5rem;
+  margin-right: 0.6rem;
   transform: scale(1.2);
 }
-input[type="radio"]:checked + span {
-  font-weight: bold;
-  color: #2980b9;
+.button-group {
+  text-align: center;
+  margin-top: 2rem;
 }
-.main-btn {
-  display: block;
-  width: 100%;
-  padding: 1rem;
-  font-size: 1.1rem;
-  color: white;
-  background-color: #3498db;
+.button-group button {
+  padding: 0.8rem 1.5rem;
+  font-size: 1rem;
+  background-color: #ccc;
   border: none;
   border-radius: 8px;
   cursor: pointer;
-  margin-top: 1.5rem;
 }
-.main-btn:hover {
-  background-color: #2980b9;
-}
-@media (max-width: 480px) {
-  body {
-    font-size: 1.05rem;
-    padding: 1rem 1rem;
-  }
-  h1 {
-    font-size: 1.5rem;
-  }
-  label {
-    font-size: 1.05rem;
-  }
-  .main-btn {
-    font-size: 1.05rem;
-  }
+.button-group button:disabled {
+  background-color: #eee;
+  color: #aaa;
+  cursor: not-allowed;
 }

@@ -2,17 +2,21 @@
 <html lang="zh-Hant">
 <head>
   <meta charset="UTF-8" />
-  <meta name="viewport" content="width=device-width, initial-scale=1.0">
-  <title>動物性格測驗</title>
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>🐾 動物性格測驗</title>
   <link rel="stylesheet" href="style.css" />
 </head>
 <body>
   <div class="container">
     <h1>🐾 動物性格測驗</h1>
-    <p class="intro">你是冷靜的貓頭鷹、果斷的獅子，還是溫柔的海豚？三題快速測驗，馬上揭曉！</p>
-    <form id="quizForm"></form>
-    <button id="submitBtn" class="main-btn">看結果</button>
+    <div id="progress-text">第 1 題 / 共 N 題</div>
+    <div class="progress-bar"><div class="progress-fill"></div></div>
+    <div id="quiz"></div>
+    <div class="button-group">
+      <button id="backBtn">⬅️ 上一題</button>
+    </div>
   </div>
+
   <script src="questions.js"></script>
   <script src="script.js"></script>
 </body>
