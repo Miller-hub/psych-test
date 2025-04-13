@@ -2,18 +2,18 @@
 <html lang="zh-Hant">
 <head>
   <meta charset="UTF-8" />
-  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-  <title>心理測驗</title>
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>動物性格測驗</title>
   <link rel="stylesheet" href="style.css" />
 </head>
 <body>
-  <h2>心理測驗：你是哪種動物性格？</h2>
-  <div id="quiz"></div>
-  <button id="nextBtn" onclick="nextQuestion()">下一題</button>
-  <div id="result" class="hidden"></div>
-  <div id="retry" class="hidden">
-    <button onclick="restartQuiz()">🔁 重新測驗</button>
+  <div class="container">
+    <h1>🐾 動物性格測驗</h1>
+    <p class="intro">你是冷靜的貓頭鷹、果斷的獅子，還是溫柔的海豚？三題快速測驗，馬上揭曉！</p>
+    <form id="quizForm"></form>
+    <button id="submitBtn" class="main-btn">看結果</button>
   </div>
+  <script src="questions.js"></script>
   <script src="script.js"></script>
 </body>
 </html>
