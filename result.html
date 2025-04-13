@@ -5,27 +5,65 @@
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
   <title>測驗結果</title>
   <link rel="stylesheet" href="style.css" />
+  <script src="https://cdn.jsdelivr.net/npm/html2canvas@1.4.1/dist/html2canvas.min.js"></script>
 </head>
 <body>
   <h2>你的測驗結果是：</h2>
-  <div id="result-container">
+  <div id="result-container" style="background: #f9f9f9; padding: 1rem; border-radius: 8px;">
     <img id="result-img" src="" alt="結果圖片" style="max-width: 100%; height: auto; display: none;">
     <p id="result-text" style="margin-top: 1rem;"></p>
   </div>
-  <a href="index.html">🔁 回到首頁</a>
+
+  <!-- 分享按鈕 -->
+  <div id="share-section" style="margin-top: 2rem;">
+    <h3>🔗 分享你的結果</h3>
+    <button onclick="shareLine()" style="margin-right: 1rem;">分享到 LINE</button>
+    <button onclick="shareFacebook()" style="margin-right: 1rem;">分享到 Facebook</button>
+    <button onclick="downloadImage()">📸 下載圖片</button>
+  </div>
+
+  <a href="index.html" style="display: block; margin-top: 2rem;">🔁 回到首頁</a>
+
   <script>
+    let resultType = "";
+    let resultText = "";
+
     fetch("results.json")
       .then(res => res.json())
       .then(results => {
         const type = localStorage.getItem("quizResult");
         if (type && results[type]) {
+          resultType = type;
+          resultText = results[type].text;
+
           document.getElementById("result-img").src = results[type].img;
           document.getElementById("result-img").style.display = "block";
-          document.getElementById("result-text").textContent = results[type].text;
+          document.getElementById("result-text").textContent = resultText;
         } else {
           document.getElementById("result-text").textContent = "找不到結果，請先完成測驗。";
         }
       });
+
+    function shareLine() {
+      const url = encodeURIComponent("https://miller-hub.github.io/psych-test/");
+      const msg = encodeURIComponent(`我剛做完心理測驗，結果是「${resultType}」！你也來試試看！`);
+      window.open(`https://social-plugins.line.me/lineit/share?url=${url}&text=${msg}`, "_blank");
+    }
+
+    function shareFacebook() {
+      const url = encodeURIComponent("https://miller-hub.github.io/psych-test/");
+      window.open(`https://www.facebook.com/sharer/sharer.php?u=${url}`, "_blank");
+    }
+
+    function downloadImage() {
+      const target = document.getElementById("result-container");
+      html2canvas(target).then(canvas => {
+        const link = document.createElement("a");
+        link.download = "my_result.png";
+        link.href = canvas.toDataURL();
+        link.click();
+      });
+    }
   </script>
 </body>
 </html>
